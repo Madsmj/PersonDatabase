@@ -1,9 +1,8 @@
 package com.anychart.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 
 
 @Entity
@@ -11,11 +10,29 @@ import javax.persistence.Table;
 public class Person {
 
     @Id
-    @Column(name = "id")
-    private int id;
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid")
+    @Column(name = "uuid", unique = true)
+    private String uuid;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "firstname")
+    private String firstname;
+
+
+    @Column(name = "lastname")
+    private String lastname;
+
+    @Column(name = "middlename")
+    private String middlename;
+
+
+    @Column(name = "dadUuid")
+    private String dadUuid;
+
+    @Column(name = "momUuid")
+    private String momUuid;
+
+
 
     @Column(name = "value")
     private int value;
@@ -23,27 +40,48 @@ public class Person {
     public Person() {
     }
 
-    public Person(int id, String name, int value) {
-        this.id = id;
-        this.name = name;
+    public Person(String uuid, String firstname, String lastname, String middlename, int value) {
+        this.uuid = uuid;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.middlename = middlename;
         this.value = value;
     }
 
-    public int getId() {
-        return id;
+    public String getUuid() {
+        return uuid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setuid(int id) {
+        this.uuid = uuid;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstname) {
+        this.firstname = firstname;
     }
+
+
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getMiddlename() {
+        return middlename;
+    }
+
+    public void setMiddlename(String middlename) {
+        this.middlename = middlename;
+    }
+
 
     public int getValue() {
         return value;

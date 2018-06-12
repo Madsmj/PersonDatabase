@@ -40,8 +40,8 @@ public class PersonDAO {
         sessionFactory.getCurrentSession().beginTransaction();
 
         Person p = new Person();
-        p.setId(3);
-        p.setName("m");
+        p.setFirstName("m");
+        p.setLastname("b");
         p.setValue(4);
 
 
