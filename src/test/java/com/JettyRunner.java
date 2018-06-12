@@ -34,7 +34,7 @@ public class JettyRunner {
         // Create Jetty Server
         Server server = new Server(8082);
 
-        Path warPath = MavenProjectsHelper.getRequiredPathTowardsRoot(SchemaGeneratorDemo.class, "HibernateGenerateTables-0.0.1-SNAPSHOT.war");
+        //Path warPath = MavenProjectsHelper.getRequiredPathTowardsRoot(SchemaGeneratorDemo.class, "HibernateGenerateTables-0.0.1-SNAPSHOT.war");
         //Path xmlPath = MavenProjectsHelper.getRequiredPathTowardsRoot(NewspaperUI.class, "dpa-manualcontrol_jetty.xml");
 
         // Read parameter name-value pairs from XML file and set them as init parameters.
@@ -60,7 +60,7 @@ public class JettyRunner {
 
         // Ready
 
-        webapp.setWar(warPath.toString());
+        webapp.setWar("/home/mmj/projects/PersonDatabase/target/HibernateGenerateTables-0.0.1-SNAPSHOT.war");
         server.setHandler(webapp);
 
         server.start();

@@ -26,6 +26,29 @@ public class PersonDAO {
 
     @Transactional
     public List<Person> getFruits(int count) {
+
+        sessionFactory.getCurrentSession().beginTransaction();
+
+
+
         return sessionFactory.getCurrentSession().createCriteria(Person.class).addOrder(Order.desc("value")).setMaxResults(count).list();
     }
+
+    @Transactional
+    public void createPerson(int count) {
+
+        sessionFactory.getCurrentSession().beginTransaction();
+
+        Person p = new Person();
+        p.setId(3);
+        p.setName("m");
+        p.setValue(4);
+
+
+
+
+        sessionFactory.getCurrentSession().save(p);
+        sessionFactory.getCurrentSession().getTransaction().commit();
+    }
+
 }
