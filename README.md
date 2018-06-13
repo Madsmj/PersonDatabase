@@ -32,7 +32,7 @@ $ git clone git@github.com:Madsmj/PersonDatabase.git
 
 Navigate to the repository folder:
 ```
-$ cd java-spring-hibernate-mysql-template
+$ cd PersonDatabase
 ```
 
 Set up MySQL database, use -u -p flags to provide your user name and password:
