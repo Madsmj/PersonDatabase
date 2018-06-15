@@ -22,10 +22,10 @@ public class PageContoller {
 
     @RequestMapping(method = RequestMethod.GET, value = "/")
     public String printWelcome(ModelMap model) {
-        personDAO.createPerson(2);
+        personDAO.createPerson("","","");
 
 
-        List<Person> persons = personDAO.getFruits(5);
+        List<Person> persons = personDAO.getPersons(5);
         model.addAttribute("title", "Anychart Java template");
         model.addAttribute("chartTitle", "Top 5 persons");
         model.addAttribute("chartData", new Gson().toJson(persons));

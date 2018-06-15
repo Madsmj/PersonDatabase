@@ -1,13 +1,22 @@
 package com.anychart;
 
+import com.anychart.dao.PersonDAO;
+import com.fasterxml.classmate.AnnotationConfiguration;
+import com.fasterxml.classmate.AnnotationInclusion;
+import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 import org.hibernate.tool.schema.TargetType;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.io.File;
+import java.lang.annotation.Annotation;
 import java.util.EnumSet;
 
 // Hibernate 5.
@@ -57,6 +66,32 @@ public class SchemaGeneratorDemo {
 
     }
 
+
+
+
+    public static void deployDataBase(SchemaExport export, Metadata metadata) {
+        // TargetType.DATABASE - Execute on Databse
+        // TargetType.SCRIPT - Write Script file.
+        // TargetType.STDOUT - Write log to Console.
+
+
+        SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+
+
+
+        PersonDAO personDAO = new PersonDAO();
+        personDAO.setSessionFactory(sessionFactory);
+
+        personDAO.createPerson("Susanne","","Møller");
+        personDAO.createPerson("Mads","Møller","Johansen");
+        personDAO.createPerson("David","Kusk","Johansen");
+        personDAO.createPerson("Thomas","Kusk","Johansen");
+        personDAO.createPerson("Jonas","Kusk","Johansen");
+
+        System.out.println("Deploy OK");
+
+    }
+
     public static void main(String[] args) {
 
         // Using Oracle Database.
@@ -79,6 +114,12 @@ public class SchemaGeneratorDemo {
         System.out.println("Create Database...");
         // Create tables
         createDataBase(export, metadata);
+
+
+        System.out.println("Deploy Database...");
+        // Create tables
+        deployDataBase(export, metadata);
+
     }
 
 }
