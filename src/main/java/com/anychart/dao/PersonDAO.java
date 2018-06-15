@@ -42,7 +42,6 @@ public class PersonDAO {
         p.setFirstname(firstName);
         p.setMiddlename(middleName);
         p.setLastname(lastName);
-        p.setValue(4);
 
         sessionFactory.getCurrentSession().save(p);
         sessionFactory.getCurrentSession().getTransaction().commit();
@@ -73,21 +72,10 @@ public class PersonDAO {
     public void updatePerson(Person p) {
 
         Transaction tx = sessionFactory.getCurrentSession().beginTransaction();
-        sessionFactory.getCurrentSession().save(p);
+        sessionFactory.getCurrentSession().update(p);
         tx.commit();
 
     }
 
-
-    @Transactional
-    public void updateParentMom(String uuid) {
-
-        sessionFactory.getCurrentSession().beginTransaction();
-        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Person.class).add(Restrictions.eq("uuid", uuid));
-        List l = criteria.list();
-
-
-        System.out.println(l);
-    }
 
 }

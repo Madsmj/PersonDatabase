@@ -3,6 +3,7 @@ package com.anychart.models;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 
 @Entity
@@ -36,18 +37,23 @@ public class Person {
     @Column(name = "requestedBy")
     private String requestedBy;
 
-    @Column(name = "value")
-    private int value;
+    @Column(name = "start")
+    private Date start;
+
+    @Column(name = "end")
+    private Date end;
+
+    @Column(name = "note")
+    private String note;
 
     public Person() {
     }
 
-    public Person(String uuid, String firstname, String lastname, String middlename, int value) {
+    public Person(String uuid, String firstname, String lastname, String middlename) {
         this.uuid = uuid;
         this.firstname = firstname;
         this.lastname = lastname;
         this.middlename = middlename;
-        this.value = value;
     }
 
     public String getUuid() {
@@ -116,11 +122,27 @@ public class Person {
         this.requestedBy = requestedBy;
     }
 
-    public int getValue() {
-        return value;
+    public Date getStart() {
+        return start;
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public void setStart(Date start) {
+        this.start = start;
+    }
+
+    public Date getEnd() {
+        return end;
+    }
+
+    public void setEnd(Date end) {
+        this.end = end;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 }

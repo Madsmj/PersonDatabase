@@ -92,11 +92,21 @@ public class SchemaGeneratorDemo {
 
         List<Person> sPerson = personDAO.findPerson("Susanne",null,null);
         List<Person> mPerson = personDAO.findPerson("Mads",null,null);
-        List<Person> dPerson = personDAO.findPerson("David",null,null);
 
+        List<Person> dPerson = personDAO.findPerson("David",null,null);
         dPerson.get(0).setMomUuid(sPerson.get(0).getUuid());
         dPerson.get(0).setDadUuid(mPerson.get(0).getUuid());
         personDAO.updatePerson(dPerson.get(0));
+
+        List<Person> tPerson = personDAO.findPerson("Thomas",null,null);
+        tPerson.get(0).setMomUuid(sPerson.get(0).getUuid());
+        tPerson.get(0).setDadUuid(mPerson.get(0).getUuid());
+        personDAO.updatePerson(tPerson.get(0));
+
+        List<Person> jPerson = personDAO.findPerson("Jonas",null,null);
+        jPerson.get(0).setMomUuid(sPerson.get(0).getUuid());
+        jPerson.get(0).setDadUuid(mPerson.get(0).getUuid());
+        personDAO.updatePerson(jPerson.get(0));
 
         System.out.println("Deploy OK");
 
