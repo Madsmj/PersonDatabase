@@ -18,13 +18,11 @@ public class Person {
     @Column(name = "firstname")
     private String firstname;
 
-
     @Column(name = "lastname")
     private String lastname;
 
     @Column(name = "middlename")
     private String middlename;
-
 
     @Column(name = "dadUuid")
     private String dadUuid;
@@ -32,7 +30,11 @@ public class Person {
     @Column(name = "momUuid")
     private String momUuid;
 
+    @Column(name = "loginKey")
+    private String loginKey;
 
+    @Column(name = "requestedBy")
+    private String requestedBy;
 
     @Column(name = "value")
     private int value;
@@ -56,7 +58,7 @@ public class Person {
         this.uuid = uuid;
     }
 
-    public String getFirstName() {
+    public String getFirstname() {
         return firstname;
     }
 
@@ -82,6 +84,37 @@ public class Person {
         this.middlename = middlename;
     }
 
+    public String getDadUuid() {
+        return dadUuid;
+    }
+
+    public void setDadUuid(String dadUuid) {
+        this.dadUuid = dadUuid;
+    }
+
+    public String getMomUuid() {
+        return momUuid;
+    }
+
+    public void setMomUuid(String momUuid) {
+        this.momUuid = momUuid;
+    }
+
+    public String getLoginKey() {
+        return loginKey;
+    }
+
+    public void setLoginKey(String loginKey) {
+        this.loginKey = loginKey;
+    }
+
+    public String getRequestedBy() {
+        return requestedBy;
+    }
+
+    public void setRequestedBy(String requestedBy) {
+        this.requestedBy = requestedBy;
+    }
 
     public int getValue() {
         return value;

@@ -84,18 +84,19 @@ public class SchemaGeneratorDemo {
         PersonDAO personDAO = new PersonDAO();
         personDAO.setSessionFactory(sessionFactory);
 
-        /*personDAO.createPerson("Susanne","","Møller");
+        personDAO.createPerson("Susanne","","Møller");
         personDAO.createPerson("Mads","Møller","Johansen");
         personDAO.createPerson("David","Kusk","Johansen");
         personDAO.createPerson("Thomas","Kusk","Johansen");
-        personDAO.createPerson("Jonas","Kusk","Johansen");*/
+        personDAO.createPerson("Jonas","Kusk","Johansen");
 
+        List<Person> sPerson = personDAO.findPerson("Susanne",null,null);
+        List<Person> mPerson = personDAO.findPerson("Mads",null,null);
+        List<Person> dPerson = personDAO.findPerson("David",null,null);
 
-        List<Person> tt = personDAO.findPerson("David",null,null);
-
-        tt.get(0).setMiddlename("Ib");
-
-        personDAO.updatePerson(tt.get(0));
+        dPerson.get(0).setMomUuid(sPerson.get(0).getUuid());
+        dPerson.get(0).setDadUuid(mPerson.get(0).getUuid());
+        personDAO.updatePerson(dPerson.get(0));
 
         System.out.println("Deploy OK");
 
@@ -118,11 +119,11 @@ public class SchemaGeneratorDemo {
 
         System.out.println("Drop Database...");
         // Drop Database
-        //dropDataBase(export, metadata);
+        dropDataBase(export, metadata);
 
         System.out.println("Create Database...");
         // Create tables
-        //createDataBase(export, metadata);
+        createDataBase(export, metadata);
 
 
         System.out.println("Deploy Database...");
