@@ -1,8 +1,11 @@
 package com.anychart.dao;
 
 import com.anychart.models.Person;
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,6 +46,48 @@ public class PersonDAO {
 
         sessionFactory.getCurrentSession().save(p);
         sessionFactory.getCurrentSession().getTransaction().commit();
+    }
+
+    @Transactional
+    public List<Person> findPerson(String firstname, String middlename, String lastname) {
+
+        sessionFactory.getCurrentSession().beginTransaction();
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Person.class);
+
+        if(firstname!=null) {
+            criteria = criteria.add(Restrictions.eq("firstname", firstname));
+        }
+        if(middlename!=null) {
+            criteria = criteria.add(Restrictions.eq("middlename", middlename));
+        }
+        if(lastname!=null) {
+            criteria = criteria.add(Restrictions.eq("lastname", lastname));
+        }
+        List<Person> list = criteria.list();
+        sessionFactory.getCurrentSession().getTransaction().rollback();
+        return list;
+
+    }
+
+    @Transactional
+    public void updatePerson(Person p) {
+
+        Transaction tx = sessionFactory.getCurrentSession().beginTransaction();
+        sessionFactory.getCurrentSession().save(p);
+        tx.commit();
+
+    }
+
+
+    @Transactional
+    public void updateParentMom(String uuid) {
+
+        sessionFactory.getCurrentSession().beginTransaction();
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Person.class).add(Restrictions.eq("uuid", uuid));
+        List l = criteria.list();
+
+
+        System.out.println(l);
     }
 
 }
