@@ -48,7 +48,16 @@ public class PersonDAO {
     }
 
     @Transactional
-    public List<Person> findPerson(String firstname, String middlename, String lastname) {
+    public String createPerson(Person p) {
+
+        sessionFactory.getCurrentSession().beginTransaction();
+        sessionFactory.getCurrentSession().save(p);
+        sessionFactory.getCurrentSession().getTransaction().commit();
+        return p.getUuid();
+    }
+
+    @Transactional
+    public List<Person> findPerson(String firstname, String middlename, String lastname, String uuid) {
 
         sessionFactory.getCurrentSession().beginTransaction();
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Person.class);
@@ -61,6 +70,9 @@ public class PersonDAO {
         }
         if(lastname!=null) {
             criteria = criteria.add(Restrictions.eq("lastname", lastname));
+        }
+        if(uuid!=null) {
+            criteria = criteria.add(Restrictions.eq("uuid", uuid));
         }
         List<Person> list = criteria.list();
         sessionFactory.getCurrentSession().getTransaction().rollback();

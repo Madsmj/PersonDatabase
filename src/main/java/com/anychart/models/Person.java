@@ -1,9 +1,12 @@
 package com.anychart.models;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -31,6 +34,9 @@ public class Person {
     @Column(name = "momUuid")
     private String momUuid;
 
+    @Column(name = "sameUuid")
+    private String sameUuid;
+
     @Column(name = "loginKey")
     private String loginKey;
 
@@ -42,6 +48,14 @@ public class Person {
 
     @Column(name = "end")
     private Date end;
+
+    @Column
+    @CreationTimestamp
+    private Date createDateTime;
+
+    @Column
+    @UpdateTimestamp
+    private Date updateDateTime;
 
     @Column(name = "note")
     private String note;
