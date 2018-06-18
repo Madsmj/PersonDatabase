@@ -1,7 +1,6 @@
-[<img src="https://cdn.anychart.com/images/logo-transparent-segoe.png?2" width="234px" alt="AnyChart - Robust JavaScript/HTML5 Chart library for any project">](https://www.anychart.com)
 # Java basic template
 
-This example shows how to run Anychart library with Java programming language using Maven, Spring MVC, Hibernate and MySQL.
+This example shows a webapp with handling of persons.
 
 ### Running
 To use this sample you must have:
@@ -27,12 +26,12 @@ To start this example run commands listed below.
 Clone the repository from github.com to your workspace folder:
 
 ```
-$ git clone git@github.com:anychart-integrations/java-spring-hibernate-mysql-template.git
+$ git clone git@github.com:Madsmj/PersonDatabase.git
 ```
 
 Navigate to the repository folder:
 ```
-$ cd java-spring-hibernate-mysql-template
+$ cd PersonDatabase
 ```
 
 Set up MySQL database, use -u -p flags to provide your user name and password:

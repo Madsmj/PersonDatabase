@@ -60,10 +60,7 @@ public class JettyRunner {
 
         // Ready
 
-        //webapp.setWar("/home/mmj/projects/PersonDatabase/target/HibernateGenerateTables-0.0.1-SNAPSHOT.war");
-
-        webapp.setWar("/home/mmj/projects/PersonDatabase/target/HibernateGenerateTables.war");
-
+        webapp.setWar("/home/mmj/projects/PersonDatabase/target/HibernateGenerateTables-0.0.1-SNAPSHOT.war");
         server.setHandler(webapp);
 
         server.start();
