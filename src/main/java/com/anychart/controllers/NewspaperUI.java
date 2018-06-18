@@ -1,5 +1,6 @@
 package com.anychart.controllers;
 
+import com.anychart.controllers.views.MainView;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.UI;
@@ -49,7 +50,8 @@ public class NewspaperUI extends UI {
         getPage().setTitle("DPA");
 
         // Create a navigator to control the views
-        //navigator = new Navigator(this, this);
+        navigator = new Navigator(this, this);
+        navigator.addView(MAINVIEW, new MainView());
 
 
     }
