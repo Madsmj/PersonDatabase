@@ -33,6 +33,21 @@ public class PersonDAO {
         return sessionFactory.getCurrentSession().createCriteria(Person.class).addOrder(Order.desc("value")).setMaxResults(count).list();
     }
 
+
+
+    @Transactional
+    public void createUser(String username, String password) {
+
+        sessionFactory.getCurrentSession().beginTransaction();
+
+        Person p = new Person();
+        p.setUsername(username);
+        p.setPassword(password);
+
+        sessionFactory.getCurrentSession().save(p);
+        sessionFactory.getCurrentSession().getTransaction().commit();
+    }
+
     @Transactional
     public void createPerson(String firstName, String middleName, String lastName) {
 

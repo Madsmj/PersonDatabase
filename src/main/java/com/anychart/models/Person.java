@@ -28,7 +28,8 @@ public class Person {
     @Column(name = "middlename")
     private String middlename;
 
-    @Column(name = "username")
+
+    @Column(name = "username", unique = true)
     private String username;
 
     @Column(name = "password")
@@ -43,7 +44,7 @@ public class Person {
     @Column(name = "sameUuid")
     private String sameUuid;
 
-    @Column(name = "loginKey")
+    @Column(name = "loginKey", unique = true)
     private String loginKey;
 
     @Column(name = "requestedBy")

@@ -23,6 +23,9 @@ public class LoginWindow extends Window {
 
     public LoginWindow(String caption) {
         super(caption);
+
+        contentPanel.setMargin(true);
+
         ok.setId("OKBUTTON");
         cancel.setId("CANCELBUTTON");
 

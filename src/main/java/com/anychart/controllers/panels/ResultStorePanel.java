@@ -1,10 +1,6 @@
 package com.anychart.controllers.panels;
 
-import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.*;
-
-import java.util.Date;
-import java.util.List;
 
 /**
  * This panel contains results of validations in a titleDelivery, it gives the possiblity of viewing what has been validated
@@ -17,8 +13,6 @@ public class ResultStorePanel extends GridLayout {
     private TextField username = new TextField();
     private TextField password = new TextField();
 
-
-
     public ResultStorePanel() {
         super(2,2);
         this.setSpacing(true);
@@ -29,7 +23,14 @@ public class ResultStorePanel extends GridLayout {
         this.addComponent(username,1,0);
         this.addComponent(password,1,1);
 
+    }
 
+    public String getUsername() {
+        return username.getValue();
+    }
+
+    public String getPassword() {
+        return password.getValue();
     }
 
 
@@ -41,13 +42,9 @@ public class ResultStorePanel extends GridLayout {
 
     }
 
-
-
     @Override
     public void setEnabled(boolean enabled) {
 
         super.setEnabled(enabled);
     }
-
-
 }
