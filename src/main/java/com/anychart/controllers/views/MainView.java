@@ -1,5 +1,6 @@
 package com.anychart.controllers.views;
 
+import com.anychart.controllers.NewspaperUI;
 import com.anychart.controllers.panels.ResultStorePanel;
 import com.anychart.controllers.window.LoginWindow;
 import com.anychart.dao.PersonDAO;
@@ -38,6 +39,29 @@ public class MainView extends VerticalLayout implements View {
                 dialog.setModal(true);
 
                 UI.getCurrent().addWindow(dialog);
+                dialog.setListener(new Button.ClickListener() {
+                    @Override
+                    public void buttonClick(Button.ClickEvent event) {
+                        UI.getCurrent().removeWindow(dialog);
+                        if ("OKBUTTON".equals(event.getButton().getId())) {
+                            String username = rp.getUsername();
+                            String password = rp.getPassword();
+                            if(username.length() > 3 && password.length() > 7) {
+                                String userUuid = personDAO.validateUser(username, rp.getPassword());
+                            } else {
+                                Notification.show("Invalid username or password", Notification.Type.ERROR_MESSAGE);
+                            }
+                        }
+                    }
+                });
+
+                dialog.addCloseListener(new Window.CloseListener() {
+                    //This event gets called when the dialog is closed
+                    @Override
+                    public void windowClose(Window.CloseEvent e) {
+                        UI.getCurrent().removeWindow(dialog);
+                    }
+                });
             }
         });
 
@@ -58,15 +82,14 @@ public class MainView extends VerticalLayout implements View {
                     public void buttonClick(Button.ClickEvent event) {
                         UI.getCurrent().removeWindow(dialog);
                         if ("OKBUTTON".equals(event.getButton().getId())) {
-
-
-                            personDAO.createUser(rp.getUsername(), rp.getPassword());
-
-
-                            //if (!writeResult) {
-                            //    Notification.show("The result can not get stored, please contact support", Notification.Type.ERROR_MESSAGE);
-                            //}
-
+                            String username = rp.getUsername();
+                            String password = rp.getPassword();
+                            if(username.length() > 3 && password.length() > 7) {
+                                String userUuid = personDAO.createUser(username, rp.getPassword());
+                                getUI().getNavigator().navigateTo(NewspaperUI.OVERVIEW);
+                            } else {
+                                Notification.show("Invalid username or password", Notification.Type.ERROR_MESSAGE);
+                            }
                         }
                     }
                 });

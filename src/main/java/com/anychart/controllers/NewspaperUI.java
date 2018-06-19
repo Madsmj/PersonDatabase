@@ -1,6 +1,7 @@
 package com.anychart.controllers;
 
 import com.anychart.controllers.views.MainView;
+import com.anychart.controllers.views.StatisticsView;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.UI;
@@ -52,6 +53,7 @@ public class NewspaperUI extends UI {
         // Create a navigator to control the views
         navigator = new Navigator(this, this);
         navigator.addView(MAINVIEW, new MainView());
+        navigator.addView(OVERVIEW, new StatisticsView(null, OVERVIEW));
 
 
     }
