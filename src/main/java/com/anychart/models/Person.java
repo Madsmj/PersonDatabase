@@ -28,6 +28,12 @@ public class Person {
     @Column(name = "middlename")
     private String middlename;
 
+    @Column(name = "username")
+    private String username;
+
+    @Column(name = "password")
+    private String password;
+
     @Column(name = "dadUuid")
     private String dadUuid;
 
@@ -134,6 +140,23 @@ public class Person {
 
     public void setRequestedBy(String requestedBy) {
         this.requestedBy = requestedBy;
+    }
+
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Date getStart() {

@@ -1,12 +1,11 @@
 package com.anychart.controllers.views;
 
 import com.anychart.controllers.NewspaperUI;
+import com.anychart.controllers.panels.ResultStorePanel;
+import com.anychart.controllers.window.LoginWindow;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Notification;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.*;
 import org.vaadin.addon.oauthpopup.OAuthListener;
 import org.vaadin.addon.oauthpopup.buttons.FacebookButton;
 import org.vaadin.addon.oauthpopup.buttons.GooglePlusButton;
@@ -20,28 +19,40 @@ public class MainView extends VerticalLayout implements View {
         setSizeFull();
 
 
-        //GooglePlusButton button = new GooglePlusButton("12894100090-tqso3lih5o42isneort886la2pesafmp.apps.googleusercontent.com","9xfU16efvxQ-BTMsXT9wOLpw");
-        //button.setScope("profile email");
+        Button loginButton = new Button("login");
 
-        FacebookButton button = new FacebookButton("12894100090-tqso3lih5o42isneort886la2pesafmp.apps.googleusercontent.com","9xfU16efvxQ-BTMsXT9wOLpw");
-        addComponent(button);
-        setComponentAlignment(button, Alignment.MIDDLE_CENTER);
+        loginButton.addClickListener(new Button.ClickListener() {
+            public void buttonClick(Button.ClickEvent event) {
+                final LoginWindow dialog = new LoginWindow(" - ");
 
+                ResultStorePanel rp = new ResultStorePanel();
+                dialog.setDialogContent(rp);
+                dialog.setModal(true);
 
-
-
-
-        button.addOAuthListener(new OAuthListener() {
-            @Override
-            public void authSuccessful(String s, String s1, String s2) {
-                System.out.println(1);
-            }
-
-            @Override
-            public void authDenied(String s) {
-                System.out.println(1);
+                UI.getCurrent().addWindow(dialog);
             }
         });
+
+        Button createButton = new Button("Create user");
+
+        createButton.addClickListener(new Button.ClickListener() {
+            public void buttonClick(Button.ClickEvent event) {
+                final LoginWindow dialog = new LoginWindow(" - ");
+
+                ResultStorePanel rp = new ResultStorePanel();
+                dialog.setDialogContent(rp);
+                dialog.setModal(true);
+
+                UI.getCurrent().addWindow(dialog);
+            }
+        });
+
+
+        this.addComponent(loginButton);
+
+        this.addComponent(createButton);
+
+
 
     }
 

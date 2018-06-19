@@ -17,6 +17,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * Runner for starting the application during development at http://localhost:8080/dpa-manualcontrol/
@@ -60,7 +61,7 @@ public class JettyRunner {
 
         // Ready
 
-        webapp.setWar("/home/mmj/projects/PersonDatabase/target/HibernateGenerateTables-0.0.1-SNAPSHOT.war");
+        webapp.setWar("/home/mmj/projects/PersonDatabase/target/HibernateGenerateTables.war");
         server.setHandler(webapp);
 
         server.start();

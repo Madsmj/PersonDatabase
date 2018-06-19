@@ -47,7 +47,7 @@ public class NewspaperUI extends UI {
 
 
         address = request.getRemoteAddr();
-        getPage().setTitle("DPA");
+        getPage().setTitle("Heritage");
 
         // Create a navigator to control the views
         navigator = new Navigator(this, this);
