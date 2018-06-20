@@ -65,11 +65,11 @@ public class MainView extends VerticalLayout implements View {
             }
         });
 
-        Button createButton = new Button("Create a new user (only loginname)");
+        Button createButton = new Button("Create a new user");
 
         createButton.addClickListener(new Button.ClickListener() {
             public void buttonClick(Button.ClickEvent event) {
-                final LoginWindow dialog = new LoginWindow("Create new user");
+                final LoginWindow dialog = new LoginWindow("Create new user (only loginname)");
 
                 ResultStorePanel rp = new ResultStorePanel();
                 dialog.setDialogContent(rp);

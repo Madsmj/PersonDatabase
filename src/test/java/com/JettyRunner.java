@@ -61,7 +61,13 @@ public class JettyRunner {
 
         // Ready
 
-        webapp.setWar("/home/mmj/projects/PersonDatabase/target/HibernateGenerateTables.war");
+        //webapp.setWar("/home/mmj/projects/PersonDatabase/target/HibernateGenerateTables.war");
+
+
+        webapp.setDescriptor("/home/mmj/projects/PersonDatabase/src/main/webapp/WEB-INF/web.xml");
+        webapp.setResourceBase("file:/home/mmj/projects/PersonDatabase/src/main/webapp/");
+        webapp.setParentLoaderPriority(true);
+
         server.setHandler(webapp);
 
         server.start();
