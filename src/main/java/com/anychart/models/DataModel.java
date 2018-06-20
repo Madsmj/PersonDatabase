@@ -1,4 +1,4 @@
-package com.anychart.controllers.datamodel;
+package com.anychart.models;
 
 
 import org.slf4j.Logger;

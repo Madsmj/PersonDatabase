@@ -36,31 +36,6 @@ public class PersonDAO {
 
 
     @Transactional
-    public String createUser(String username, String password) {
-        sessionFactory.getCurrentSession().beginTransaction();
-        Person p = new Person();
-        p.setUsername(username);
-        p.setPassword(password);
-        sessionFactory.getCurrentSession().save(p);
-        sessionFactory.getCurrentSession().getTransaction().commit();
-        return p.getUuid();
-    }
-
-    @Transactional
-    public String validateUser(String username, String password) {
-
-        sessionFactory.getCurrentSession().beginTransaction();
-        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Person.class);
-        criteria = criteria.add(Restrictions.eq("username", username));
-        List<Person> list = criteria.list();
-        sessionFactory.getCurrentSession().getTransaction().rollback();
-        if(password.equals(list.get(0).getPassword())) {
-            return list.get(0).getUuid();
-        }
-        return null;
-    }
-
-    @Transactional
     public void createPerson(String firstName, String middleName, String lastName) {
 
         sessionFactory.getCurrentSession().beginTransaction();

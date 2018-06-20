@@ -28,13 +28,6 @@ public class Person {
     @Column(name = "middlename")
     private String middlename;
 
-
-    @Column(name = "username", unique = true)
-    private String username;
-
-    @Column(name = "password")
-    private String password;
-
     @Column(name = "dadUuid")
     private String dadUuid;
 
@@ -43,9 +36,6 @@ public class Person {
 
     @Column(name = "sameUuid")
     private String sameUuid;
-
-    @Column(name = "loginKey", unique = true)
-    private String loginKey;
 
     @Column(name = "requestedBy")
     private String requestedBy;
@@ -127,37 +117,12 @@ public class Person {
         this.momUuid = momUuid;
     }
 
-    public String getLoginKey() {
-        return loginKey;
-    }
-
-    public void setLoginKey(String loginKey) {
-        this.loginKey = loginKey;
-    }
-
     public String getRequestedBy() {
         return requestedBy;
     }
 
     public void setRequestedBy(String requestedBy) {
         this.requestedBy = requestedBy;
-    }
-
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public Date getStart() {

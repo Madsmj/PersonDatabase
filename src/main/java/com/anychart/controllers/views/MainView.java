@@ -3,7 +3,7 @@ package com.anychart.controllers.views;
 import com.anychart.controllers.NewspaperUI;
 import com.anychart.controllers.panels.ResultStorePanel;
 import com.anychart.controllers.window.LoginWindow;
-import com.anychart.dao.PersonDAO;
+import com.anychart.dao.UserDAO;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.*;
@@ -19,12 +19,12 @@ public class MainView extends VerticalLayout implements View {
 
     SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 
-    PersonDAO personDAO = new PersonDAO();
+    UserDAO userDAO = new UserDAO();
 
 
 
     public MainView() {
-        personDAO.setSessionFactory(sessionFactory);
+        userDAO.setSessionFactory(sessionFactory);
         setSizeFull();
 
 
@@ -47,7 +47,7 @@ public class MainView extends VerticalLayout implements View {
                             String username = rp.getUsername();
                             String password = rp.getPassword();
                             if(username.length() > 3 && password.length() > 7) {
-                                String userUuid = personDAO.validateUser(username, rp.getPassword());
+                                String userUuid = userDAO.validateUser(username, rp.getPassword());
                             } else {
                                 Notification.show("Invalid username or password", Notification.Type.ERROR_MESSAGE);
                             }
@@ -85,7 +85,7 @@ public class MainView extends VerticalLayout implements View {
                             String username = rp.getUsername();
                             String password = rp.getPassword();
                             if(username.length() > 3 && password.length() > 7) {
-                                String userUuid = personDAO.createUser(username, rp.getPassword());
+                                String userUuid = userDAO.createUser(username, rp.getPassword());
                                 getUI().getNavigator().navigateTo(NewspaperUI.OVERVIEW);
                             } else {
                                 Notification.show("Invalid username or password", Notification.Type.ERROR_MESSAGE);

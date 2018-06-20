@@ -2,24 +2,14 @@ package com.anychart.controllers.views;
 
 
 import com.anychart.controllers.NewspaperUI;
-import com.anychart.controllers.datamodel.DataModel;
+import com.anychart.models.DataModel;
 import com.anychart.controllers.panels.DatePanel;
-import com.anychart.controllers.panels.GenericListTable;
 import com.anychart.controllers.panels.SearchPanel;
-import com.vaadin.event.ItemClickEvent;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.server.ExternalResource;
-import com.vaadin.server.Resource;
 import com.vaadin.ui.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.net.URI;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * The full panel for showing deliveries and titles.
