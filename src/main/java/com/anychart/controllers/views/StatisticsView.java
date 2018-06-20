@@ -5,11 +5,15 @@ import com.anychart.controllers.FamilymapUI;
 import com.anychart.models.DataModel;
 import com.anychart.controllers.panels.DatePanel;
 import com.anychart.controllers.panels.SearchPanel;
+import com.anychart.models.Person;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * The full panel for showing deliveries and titles.
@@ -26,6 +30,28 @@ public class StatisticsView extends VerticalLayout implements View {
     private DatePanel tabelsLayout;
 
     public StatisticsView(DataModel model, String type) {
+
+
+
+
+        // Have some data
+        List<Person> people = Arrays.asList(
+                new Person("Nicolaus Copernicus", "","",""),
+                new Person("Galileo Galilei", "","",""),
+                new Person("Johannes Kepler", "","",""));
+
+// Create a grid bound to the list
+        Grid<Person> grid = new Grid<>();
+        grid.setItems(people);
+        grid.addColumn(Person::getFirstname).setCaption("Name");
+        grid.addColumn(Person::getLastname).setCaption("Lastname");
+
+        this.addComponent(grid);
+
+
+
+
+
 
         this.model = model;
         MenuBar header = new MenuBar();

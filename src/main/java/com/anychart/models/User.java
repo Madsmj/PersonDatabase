@@ -33,6 +33,9 @@ public class User {
     @Column(name = "loginKey", unique = true)
     private String loginKey;
 
+    @Column(name = "email", unique = true)
+    private String email;
+
     @OneToOne
     @JoinColumn(name="personUuid")
     private Person person;

@@ -1,63 +1,72 @@
 package com.anychart.controllers.panels;
 
 
+import com.anychart.dao.PersonDAO;
+import com.anychart.dao.UserDAO;
+import com.anychart.models.Person;
 import com.vaadin.ui.*;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
+import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Panel for handling searching of values for checkings
  */
-public class SearchPanel extends HorizontalLayout {
+public class SearchPanel extends VerticalLayout {
 
-    public static final String prepareButtonId = "PREPAREBUTTON";
-    public static final String startButtonId = "START";
-    public static final String linkButtonId = "LINK";
+    SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+    PersonDAO personDAO = new PersonDAO();
 
-    private HorizontalLayout controlLayout = new HorizontalLayout();
+    HorizontalLayout hz = new HorizontalLayout();
 
-    private DateField startDf = new DateField();
+    Button searchButton = new Button("Search");
 
-    private Button prepareButton = new Button("Prepare month");
-    private Button storeTitlesButton = new Button("Start");
-    private Button getLink = new Button("Get link");
-    private Label info = new Label("");
+    private DateField startDf = new DateField("Lived", LocalDate.now());
+
+    TextField firstname = new TextField("Firstname");
+    TextField middlename = new TextField("MiddleName(s)");
+    TextField lastname = new TextField("Lastname");
+    List<Person> people;
+    Grid<Person> grid = new Grid<>();
+
 
     public SearchPanel() {
 
-        prepareButton.setId(prepareButtonId);
-        storeTitlesButton.setId(startButtonId);
-        getLink.setId(linkButtonId);
+        personDAO.setSessionFactory(sessionFactory);
+
+        searchButton.addClickListener(new Button.ClickListener() {
+            @Override
+            public void buttonClick(Button.ClickEvent clickEvent) {
+                people = personDAO.findPerson(firstname.getValue(),firstname.getValue(),firstname.getValue(), null);
+                grid.setItems(people);
+            }
+        });
 
 
+        // Have some data
+        /*List<Person> people = Arrays.asList(
+                new Person("Nicolaus Copernicus", "a","",""),
+                new Person("Galileo Galilei", "v","",""),
+                new Person("Johannes Kepler", "s","",""));*/
+
+// Create a grid bound to the list
 
 
-        controlLayout.addComponent(startDf);
-        controlLayout.addComponent(prepareButton);
-        controlLayout.addComponent(storeTitlesButton);
+        grid.addColumn(Person::getFirstname).setCaption("Firstname");
+        grid.addColumn(Person::getLastname).setCaption("Lastname");
 
-        this.addComponent(controlLayout);
-        this.setComponentAlignment(controlLayout, Alignment.MIDDLE_LEFT);
-        this.addComponent(info);
-        this.addComponent(getLink);
-        this.setComponentAlignment(getLink, Alignment.MIDDLE_RIGHT);
-        this.setWidth("100%");
-    }
+        hz.addComponent(searchButton);
+        hz.addComponent(firstname);
+        hz.addComponent(middlename);
+        hz.addComponent(lastname);
+        hz.addComponent(startDf);
 
-    /**
-     * Get the dete that is currently shown in the datecomponent
-     * @return
-     */
-    /*public Date getSelectedDate() {
-        return startDf.getValue();
-    }*/
-
-    /*public void setSelectedMonth(Date month) {
-        startDf.setValue(month);
-    }*/
-
-    public void setLabel(String label) {
-        info.setValue(label);
+        this.addComponent(hz);
+        this.addComponent(grid);
     }
 
 
@@ -66,8 +75,6 @@ public class SearchPanel extends HorizontalLayout {
      * @param listener
      */
     public void addClickListener(Button.ClickListener listener) {
-        prepareButton.addClickListener(listener);
-        storeTitlesButton.addClickListener(listener);
-        getLink.addClickListener(listener);
+
     }
 }

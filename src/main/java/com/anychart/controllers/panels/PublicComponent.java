@@ -13,7 +13,6 @@ import org.hibernate.cfg.Configuration;
 public class PublicComponent extends CustomComponent {
 
     SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
-
     UserDAO userDAO = new UserDAO();
 
 
