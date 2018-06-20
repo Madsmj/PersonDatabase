@@ -18,20 +18,27 @@ import java.util.List;
  */
 public class SearchPanel extends VerticalLayout {
 
-    SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
-    PersonDAO personDAO = new PersonDAO();
+    private SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+    private PersonDAO personDAO = new PersonDAO();
 
-    HorizontalLayout hz = new HorizontalLayout();
+    private HorizontalLayout hz = new HorizontalLayout();
+    private HorizontalLayout hz2 = new HorizontalLayout();
 
-    Button searchButton = new Button("Search");
+    private Button searchButton = new Button("Search");
 
     private DateField startDf = new DateField("Lived", LocalDate.now());
 
-    TextField firstname = new TextField("Firstname");
-    TextField middlename = new TextField("MiddleName(s)");
-    TextField lastname = new TextField("Lastname");
-    List<Person> people;
-    Grid<Person> grid = new Grid<>();
+    private TextField firstname = new TextField("Firstname");
+    private TextField middlename = new TextField("MiddleName(s)");
+    private TextField lastname = new TextField("Lastname");
+
+    private Button meButton = new Button("Me");
+    private Button fatherButton = new Button("Father");
+    private Button motherButton = new Button("Mother");
+
+
+    private List<Person> people;
+    private Grid<Person> grid = new Grid<>();
 
 
     public SearchPanel() {
@@ -57,6 +64,7 @@ public class SearchPanel extends VerticalLayout {
 
 
         grid.addColumn(Person::getFirstname).setCaption("Firstname");
+        grid.addColumn(Person::getMiddlename).setCaption("Middlename");
         grid.addColumn(Person::getLastname).setCaption("Lastname");
 
         hz.addComponent(searchButton);
@@ -65,7 +73,12 @@ public class SearchPanel extends VerticalLayout {
         hz.addComponent(lastname);
         hz.addComponent(startDf);
 
+        hz2.addComponent(meButton);
+        hz2.addComponent(fatherButton);
+        hz2.addComponent(motherButton);
+
         this.addComponent(hz);
+        this.addComponent(hz2);
         this.addComponent(grid);
     }
 

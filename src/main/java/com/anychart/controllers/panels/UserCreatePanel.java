@@ -6,14 +6,14 @@ import com.vaadin.ui.*;
  * This panel contains results of validations in a titleDelivery, it gives the possiblity of viewing what has been validated
  * and store it if it is approved.
  */
-public class ResultStorePanel extends GridLayout {
+public class UserCreatePanel extends GridLayout {
 
     private Label usernamelabel = new Label("username");
     private Label passwordlabel = new Label("password");
     private TextField username = new TextField();
     private TextField password = new TextField();
 
-    public ResultStorePanel() {
+    public UserCreatePanel() {
         super(2,2);
         this.setSpacing(true);
 

@@ -12,24 +12,17 @@ import org.hibernate.cfg.Configuration;
 
 public class PublicComponent extends CustomComponent {
 
-    SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
-    UserDAO userDAO = new UserDAO();
-
-
+    private SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+    private UserDAO userDAO = new UserDAO();
 
     public PublicComponent() {
 
         userDAO.setSessionFactory(sessionFactory);
         setSizeFull();
-
         TextField username = new TextField("Username");
         username.focus();
-
         PasswordField password = new PasswordField("Password");
-
         CheckBox rememberMe = new CheckBox("Remember me");
-
-
         Button button = new Button("Login", e -> onLogin(username.getValue(), password.getValue(), rememberMe.getValue()));
         button.setClickShortcut(ShortcutAction.KeyCode.ENTER);
 
@@ -38,7 +31,7 @@ public class PublicComponent extends CustomComponent {
             public void buttonClick(Button.ClickEvent event) {
                 final LoginWindow dialog = new LoginWindow("Create new user (only loginname)");
 
-                ResultStorePanel rp = new ResultStorePanel();
+                UserCreatePanel rp = new UserCreatePanel();
                 dialog.setDialogContent(rp);
                 dialog.setModal(true);
 
@@ -83,9 +76,6 @@ public class PublicComponent extends CustomComponent {
 
         setCompositionRoot(layout);
         setSizeFull();
-
-
-
     }
 
     private void onLogin(String username, String password, boolean rememberMe) {
@@ -93,8 +83,7 @@ public class PublicComponent extends CustomComponent {
             FamilymapUI ui = (FamilymapUI) UI.getCurrent();
             ui.showPrivateComponent();
         } else {
-            Notification.show("Invalid credentials (for demo use: admin/password)", Notification.Type.ERROR_MESSAGE);
+            Notification.show("Invalid credentials", Notification.Type.ERROR_MESSAGE);
         }
     }
-
 }
