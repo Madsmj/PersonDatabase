@@ -41,7 +41,7 @@ public class SearchPanel extends VerticalLayout {
         searchButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
-                people = personDAO.findPerson(firstname.getValue(),firstname.getValue(),firstname.getValue(), null);
+                people = personDAO.findPerson(firstname.getValue(),middlename.getValue(),lastname.getValue(), null);
                 grid.setItems(people);
             }
         });

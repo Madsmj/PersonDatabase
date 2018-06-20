@@ -9,6 +9,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -64,16 +65,16 @@ public class PersonDAO {
         sessionFactory.getCurrentSession().beginTransaction();
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Person.class);
 
-        if(firstname!=null) {
+        if(!StringUtils.isEmpty(firstname)) {
             criteria = criteria.add(Restrictions.eq("firstname", firstname));
         }
-        if(middlename!=null) {
+        if(!StringUtils.isEmpty(middlename)) {
             criteria = criteria.add(Restrictions.eq("middlename", middlename));
         }
-        if(lastname!=null) {
+        if(!StringUtils.isEmpty(lastname)) {
             criteria = criteria.add(Restrictions.eq("lastname", lastname));
         }
-        if(uuid!=null) {
+        if(!StringUtils.isEmpty(uuid)) {
             criteria = criteria.add(Restrictions.eq("uuid", uuid));
         }
         List<Person> list = criteria.list();
