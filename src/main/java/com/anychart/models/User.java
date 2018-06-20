@@ -7,6 +7,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.sql.Date;
@@ -31,8 +33,9 @@ public class User {
     @Column(name = "loginKey", unique = true)
     private String loginKey;
 
-    @Column(name = "personUuid", unique = true)
-    private String personUuid;
+    @OneToOne
+    @JoinColumn(name="personUuid")
+    private Person person;
 
     @Column
     @CreationTimestamp
@@ -78,12 +81,13 @@ public class User {
         this.password = password;
     }
 
-    public String getPersonUuid() {
-        return personUuid;
+
+    public Person getPerson() {
+        return person;
     }
 
-    public void setPersonUuid(String personUuid) {
-        this.personUuid = personUuid;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
 }

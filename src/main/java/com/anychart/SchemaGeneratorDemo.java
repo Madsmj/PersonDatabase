@@ -1,7 +1,9 @@
 package com.anychart;
 
 import com.anychart.dao.PersonDAO;
+import com.anychart.dao.UserDAO;
 import com.anychart.models.Person;
+import com.anychart.models.User;
 import com.fasterxml.classmate.AnnotationConfiguration;
 import com.fasterxml.classmate.AnnotationInclusion;
 import org.hibernate.SessionFactory;
@@ -76,6 +78,9 @@ public class SchemaGeneratorDemo {
 
         PersonDAO personDAO = new PersonDAO();
         personDAO.setSessionFactory(sessionFactory);
+
+        UserDAO userDAO = new UserDAO();
+        userDAO.setSessionFactory(sessionFactory);
 
         personDAO.createPerson("Susanne","","Møller");
         personDAO.createPerson("Mads","Møller","Johansen");
@@ -165,6 +170,13 @@ public class SchemaGeneratorDemo {
         ad1.setMomUuid(muuid);
         ad1.setDadUuid(duuid);
         uuid = personDAO.createPerson(ad1);
+
+        User fu = new User();
+        fu.setUsername("mads");
+        fu.setPassword("testtest");
+        fu.setPerson(mPerson.get(0));
+        uuid = userDAO.createUser(fu);
+
 
 
         System.out.println("Deploy OK");
