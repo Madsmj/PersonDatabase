@@ -28,7 +28,7 @@ public class JettyRunner {
 
         // Locate custom cacerts with LDAP server certificate - https://stackoverflow.com/a/38431439/53897
 
-        //Path cacertPath = MavenProjectsHelper.getRequiredPathTowardsRoot(NewspaperUI.class, "cacerts");
+        //Path cacertPath = MavenProjectsHelper.getRequiredPathTowardsRoot(FamilymapUI.class, "cacerts");
         //System.setProperty ("javax.net.ssl.trustStore", cacertPath.toFile().getAbsolutePath());
         //System.setProperty ("javax.net.ssl.trustStorePassword", "changeit");
 
@@ -36,7 +36,7 @@ public class JettyRunner {
         Server server = new Server(8082);
 
         //Path warPath = MavenProjectsHelper.getRequiredPathTowardsRoot(SchemaGeneratorDemo.class, "HibernateGenerateTables-0.0.1-SNAPSHOT.war");
-        //Path xmlPath = MavenProjectsHelper.getRequiredPathTowardsRoot(NewspaperUI.class, "dpa-manualcontrol_jetty.xml");
+        //Path xmlPath = MavenProjectsHelper.getRequiredPathTowardsRoot(FamilymapUI.class, "dpa-manualcontrol_jetty.xml");
 
         // Read parameter name-value pairs from XML file and set them as init parameters.
         //InputStream in = new FileInputStream(xmlPath.toFile());

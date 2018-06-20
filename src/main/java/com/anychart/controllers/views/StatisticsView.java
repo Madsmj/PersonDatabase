@@ -1,7 +1,7 @@
 package com.anychart.controllers.views;
 
 
-import com.anychart.controllers.NewspaperUI;
+import com.anychart.controllers.FamilymapUI;
 import com.anychart.models.DataModel;
 import com.anychart.controllers.panels.DatePanel;
 import com.anychart.controllers.panels.SearchPanel;
@@ -38,28 +38,28 @@ public class StatisticsView extends VerticalLayout implements View {
         MenuBar.Command configCommand = new MenuBar.Command() {
             @Override
             public void menuSelected(MenuBar.MenuItem selectedItem) {
-                getUI().getNavigator().navigateTo(NewspaperUI.CONFIGPANEL);
+                getUI().getNavigator().navigateTo(FamilymapUI.CONFIGPANEL);
             }
         };
 
         MenuBar.Command otherCommand1 = new MenuBar.Command() {
             @Override
             public void menuSelected(MenuBar.MenuItem selectedItem) {
-                getUI().getNavigator().navigateTo(NewspaperUI.DELIVERYPANEL);
+                getUI().getNavigator().navigateTo(FamilymapUI.DELIVERYPANEL);
             }
         };
 
         MenuBar.Command otherCommand2 = new MenuBar.Command() {
             @Override
             public void menuSelected(MenuBar.MenuItem selectedItem) {
-                getUI().getNavigator().navigateTo(NewspaperUI.TITLEVALIDATIONPANEL);
+                getUI().getNavigator().navigateTo(FamilymapUI.TITLEVALIDATIONPANEL);
             }
         };
 
         MenuBar.Command otherCommand3 = new MenuBar.Command() {
             @Override
             public void menuSelected(MenuBar.MenuItem selectedItem) {
-                getUI().getNavigator().navigateTo(NewspaperUI.OVERVIEW);
+                getUI().getNavigator().navigateTo(FamilymapUI.OVERVIEW);
             }
         };
 
@@ -69,7 +69,7 @@ public class StatisticsView extends VerticalLayout implements View {
         header.addItem("Overview", otherCommand3);
 
         switch (type) {
-            case NewspaperUI.DELIVERYPANEL:
+            case FamilymapUI.DELIVERYPANEL:
                 tabelsLayout = new DatePanel();
                 break;
 

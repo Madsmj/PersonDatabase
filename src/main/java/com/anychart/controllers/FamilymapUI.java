@@ -1,5 +1,8 @@
 package com.anychart.controllers;
 
+import com.anychart.controllers.panels.PrivateComponent;
+import com.anychart.controllers.panels.PublicComponent;
+import com.anychart.controllers.utils.AuthService;
 import com.anychart.controllers.views.MainView;
 import com.anychart.controllers.views.StatisticsView;
 import com.vaadin.navigator.Navigator;
@@ -12,7 +15,7 @@ import org.slf4j.LoggerFactory;
  * The Application's "main" class
  */
 @SuppressWarnings("serial")
-public class NewspaperUI extends UI {
+public class FamilymapUI extends UI {
 
     protected Logger log = LoggerFactory.getLogger(getClass());
 
@@ -34,7 +37,15 @@ public class NewspaperUI extends UI {
     @Override
     protected void init(VaadinRequest request) {
 
-        if (request.getUserPrincipal() != null) {
+
+        if (!AuthService.isAuthenticated()) {
+            showPublicComponent();
+        } else {
+            showPrivateComponent();
+        }
+
+
+        /*if (request.getUserPrincipal() != null) {
             String initials = request.getUserPrincipal().getName();
             //model.setInitials(initials);
         }
@@ -53,9 +64,16 @@ public class NewspaperUI extends UI {
         // Create a navigator to control the views
         navigator = new Navigator(this, this);
         navigator.addView(MAINVIEW, new MainView());
-        navigator.addView(OVERVIEW, new StatisticsView(null, OVERVIEW));
+        navigator.addView(OVERVIEW, new StatisticsView(null, OVERVIEW));*/
 
 
     }
 
+    public void showPublicComponent() {
+        setContent(new PublicComponent());
+    }
+
+    public void showPrivateComponent() {
+        setContent(new PrivateComponent());
+    }
 }

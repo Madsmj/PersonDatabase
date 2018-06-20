@@ -1,15 +1,12 @@
 package com.anychart.controllers.views;
 
-import com.anychart.controllers.NewspaperUI;
-import com.anychart.controllers.panels.ResultStorePanel;
-import com.anychart.controllers.window.LoginWindow;
+import com.anychart.controllers.panels.PublicComponent;
 import com.anychart.dao.UserDAO;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.springframework.beans.factory.annotation.Autowired;
 
 
 /**
@@ -28,13 +25,17 @@ public class MainView extends VerticalLayout implements View {
         setSizeFull();
 
 
-        Button loginButton = new Button("login");
+        PublicComponent rp = new PublicComponent();
+        this.addComponent(rp);
+
+
+        /*Button loginButton = new Button("login");
 
         loginButton.addClickListener(new Button.ClickListener() {
             public void buttonClick(Button.ClickEvent event) {
                 final LoginWindow dialog = new LoginWindow("Login to existing user");
 
-                ResultStorePanel rp = new ResultStorePanel();
+                PublicComponent rp = new PublicComponent();
                 dialog.setDialogContent(rp);
                 dialog.setModal(true);
 
@@ -71,9 +72,11 @@ public class MainView extends VerticalLayout implements View {
             public void buttonClick(Button.ClickEvent event) {
                 final LoginWindow dialog = new LoginWindow("Create new user (only loginname)");
 
-                ResultStorePanel rp = new ResultStorePanel();
+                PublicComponent rp = new PublicComponent();
                 dialog.setDialogContent(rp);
                 dialog.setModal(true);
+
+
 
 
                 UI.getCurrent().addWindow(dialog);
@@ -84,9 +87,12 @@ public class MainView extends VerticalLayout implements View {
                         if ("OKBUTTON".equals(event.getButton().getId())) {
                             String username = rp.getUsername();
                             String password = rp.getPassword();
+
+                            AuthService.login(username, password, true);
+
                             if(username.length() > 3 && password.length() > 7) {
                                 String userUuid = userDAO.createUser(username, rp.getPassword());
-                                getUI().getNavigator().navigateTo(NewspaperUI.OVERVIEW);
+                                getUI().getNavigator().navigateTo(FamilymapUI.OVERVIEW);
                             } else {
                                 Notification.show("Invalid username or password", Notification.Type.ERROR_MESSAGE);
                             }
@@ -107,7 +113,7 @@ public class MainView extends VerticalLayout implements View {
 
         this.addComponent(loginButton);
 
-        this.addComponent(createButton);
+        this.addComponent(createButton);*/
     }
 
     @Override

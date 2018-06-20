@@ -1,6 +1,6 @@
 package com.anychart.controllers.panels;
 
-import com.vaadin.shared.ui.datefield.Resolution;
+
 import com.vaadin.ui.*;
 
 import java.util.Date;
@@ -29,8 +29,8 @@ public class SearchPanel extends HorizontalLayout {
         storeTitlesButton.setId(startButtonId);
         getLink.setId(linkButtonId);
 
-        startDf.setResolution(Resolution.MONTH);
-        startDf.setValue(new Date());
+
+
 
         controlLayout.addComponent(startDf);
         controlLayout.addComponent(prepareButton);
@@ -48,13 +48,13 @@ public class SearchPanel extends HorizontalLayout {
      * Get the dete that is currently shown in the datecomponent
      * @return
      */
-    public Date getSelectedDate() {
+    /*public Date getSelectedDate() {
         return startDf.getValue();
-    }
+    }*/
 
-    public void setSelectedMonth(Date month) {
+    /*public void setSelectedMonth(Date month) {
         startDf.setValue(month);
-    }
+    }*/
 
     public void setLabel(String label) {
         info.setValue(label);

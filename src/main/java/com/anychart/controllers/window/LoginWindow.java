@@ -15,7 +15,7 @@ public class LoginWindow extends Window {
     private final HorizontalLayout contentPanel = new HorizontalLayout();
     private final VerticalLayout vl = new VerticalLayout();
     private final HorizontalLayout hl = new HorizontalLayout();
-    private Layout resultPanel;
+    private com.vaadin.ui.Layout resultPanel;
 
     private final Button ok = new Button("Ok");
     private final Button cancel = new Button("Cancel");
@@ -60,7 +60,7 @@ public class LoginWindow extends Window {
      * Insert the content to view in the dialog
      * @param content
      */
-    public void setDialogContent(Layout content) {
+    public void setDialogContent(com.vaadin.ui.Layout content) {
         resultPanel = content;
         contentPanel.addComponent(resultPanel);
     }
