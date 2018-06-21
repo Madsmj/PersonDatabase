@@ -41,7 +41,7 @@ public class SearchPanel extends VerticalLayout {
     private List<Person> people;
     private Grid<Person> grid = new Grid<>();
 
-    DataModel dm = new DataModel();
+    private DataModel dm = new DataModel();
 
 
     public SearchPanel() {
@@ -66,30 +66,41 @@ public class SearchPanel extends VerticalLayout {
         grid.addColumn(Person::getMiddlename).setCaption("Middlename");
         grid.addColumn(Person::getLastname).setCaption("Lastname");
         grid.addSelectionListener(event -> {
-            Person selected = event.getFirstSelectedItem().get();
+            Person listSelectedPerson = event.getFirstSelectedItem().get();
             final PopupWindow dialog = new PopupWindow("Connect Person", false);
             PersonConnectPanel rp = new PersonConnectPanel();
-            rp.setSelectedPerson(selected.getFirstname()+" "+selected.getMiddlename()+" "+selected.getLastname());
+            rp.setSelectedPerson(listSelectedPerson.getFirstname()+" "+listSelectedPerson.getMiddlename()+" "+listSelectedPerson.getLastname());
 
             rp.addClickListener(new Button.ClickListener() {
                 @Override
                 public void buttonClick(Button.ClickEvent clickEvent) {
 
+                    Person person;
                     switch(clickEvent.getButton().getId()) {
+
+
 
                         case "ME":
                             User user = (User) VaadinSession.getCurrent()
-                                    .getAttribute(AuthService.SESSION_USERUITEM);
+                                    .getAttribute(AuthService.SESSION_USERITEM);
 
-                            user.setPerson(selected);
+                            VaadinSession.getCurrent().setAttribute(
+                                    AuthService.SESSION_PERSONITEM, listSelectedPerson);
+
+                            user.setPerson(listSelectedPerson);
                             dm.updateUser(user);
 
                             break;
                         case "FATHER":
 
+                            person = (Person)VaadinSession.getCurrent().getAttribute(AuthService.SESSION_PERSONITEM);
+                            person.setDadUuid(listSelectedPerson);
                             break;
                         case "MOTHER":
 
+                            person = (Person)VaadinSession.getCurrent().getAttribute(AuthService.SESSION_PERSONITEM);
+                            person.setMomUuid(listSelectedPerson);
+                            dm.updatePerson(person);
                             break;
 
                     }

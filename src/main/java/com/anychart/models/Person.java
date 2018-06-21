@@ -7,6 +7,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.sql.Date;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -28,11 +30,20 @@ public class Person {
     @Column(name = "middlename")
     private String middlename;
 
-    @Column(name = "dadUuid")
-    private String dadUuid;
+    @ManyToOne(cascade={CascadeType.ALL})
+    @JoinColumn(name = "dadUuid")
+    private Person dadUuid;
 
-    @Column(name = "momUuid")
-    private String momUuid;
+    @OneToMany(mappedBy="dadUuid")
+    private Set<Person> dadchilds = new HashSet<Person>();
+
+
+    @ManyToOne(cascade={CascadeType.ALL})
+    @JoinColumn(name="momUuid")
+    private Person momUuid;
+
+    @OneToMany(mappedBy="momUuid")
+    private Set<Person> momchilds = new HashSet<Person>();
 
     @Column(name = "sameUuid")
     private String sameUuid;
@@ -101,19 +112,19 @@ public class Person {
         this.middlename = middlename;
     }
 
-    public String getDadUuid() {
+    public Person getDadUuid() {
         return dadUuid;
     }
 
-    public void setDadUuid(String dadUuid) {
+    public void setDadUuid(Person dadUuid) {
         this.dadUuid = dadUuid;
     }
 
-    public String getMomUuid() {
+    public Person getMomUuid() {
         return momUuid;
     }
 
-    public void setMomUuid(String momUuid) {
+    public void setMomUuid(Person momUuid) {
         this.momUuid = momUuid;
     }
 

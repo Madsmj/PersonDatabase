@@ -4,9 +4,11 @@ package com.anychart.models;
 import com.anychart.models.dao.PersonDAO;
 import com.anychart.models.dao.UserDAO;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -39,6 +41,13 @@ public class DataModel {
 
     public void updateUser(User user) {
         userDAO.updateUser(user);
+    }
+
+    @Transactional
+    public void updatePerson(Person p) {
+
+        personDAO.updatePerson(p);
+
     }
 
     /**

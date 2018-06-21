@@ -20,7 +20,8 @@ public class AuthService {
     private static final String COOKIE_NAME = "remember-me";
     public static final String SESSION_USERNAME = "username";
     public static final String SESSION_USERUUID = "useruuid";
-    public static final String SESSION_USERUITEM = "useritem";
+    public static final String SESSION_USERITEM = "useritem";
+    public static final String SESSION_PERSONITEM = "personitem";
 
 
 
@@ -52,7 +53,10 @@ public class AuthService {
                     SESSION_USERUUID, user.getUuid());
 
             VaadinSession.getCurrent().setAttribute(
-                    SESSION_USERUITEM, user);
+                    SESSION_USERITEM, user);
+
+            VaadinSession.getCurrent().setAttribute(
+                    SESSION_PERSONITEM, user.getPerson());
 
             if (rememberMe) {
                 rememberUser(username);

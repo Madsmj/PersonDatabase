@@ -86,18 +86,18 @@ public class SchemaGeneratorDemo {
         List<Person> mPerson = personDAO.findPerson("Mads",null,null,null);
 
         List<Person> dPerson = personDAO.findPerson("David",null,null,null);
-        dPerson.get(0).setMomUuid(sPerson.get(0).getUuid());
-        dPerson.get(0).setDadUuid(mPerson.get(0).getUuid());
+        dPerson.get(0).setMomUuid(sPerson.get(0));
+        dPerson.get(0).setDadUuid(mPerson.get(0));
         personDAO.updatePerson(dPerson.get(0));
 
         List<Person> tPerson = personDAO.findPerson("Thomas",null,null,null);
-        tPerson.get(0).setMomUuid(sPerson.get(0).getUuid());
-        tPerson.get(0).setDadUuid(mPerson.get(0).getUuid());
+        tPerson.get(0).setMomUuid(sPerson.get(0));
+        tPerson.get(0).setDadUuid(mPerson.get(0));
         personDAO.updatePerson(tPerson.get(0));
 
         List<Person> jPerson = personDAO.findPerson("Jonas",null,null,null);
-        jPerson.get(0).setMomUuid(sPerson.get(0).getUuid());
-        jPerson.get(0).setDadUuid(mPerson.get(0).getUuid());
+        jPerson.get(0).setMomUuid(sPerson.get(0));
+        jPerson.get(0).setDadUuid(mPerson.get(0));
         personDAO.updatePerson(jPerson.get(0));
 
         //Add person to me
@@ -106,7 +106,7 @@ public class SchemaGeneratorDemo {
         adp.setLastname("Johansen");
         String duuid = personDAO.createPerson(adp);
         List<Person> added = personDAO.findPerson("Mads",null,null,null);
-        added.get(0).setDadUuid(duuid);
+        added.get(0).setDadUuid(adp);
         personDAO.updatePerson(added.get(0));
 
         //Add person to me
@@ -116,7 +116,7 @@ public class SchemaGeneratorDemo {
         amp.setLastname("Johansen");
         String muuid = personDAO.createPerson(amp);
         List<Person> added2 = personDAO.findPerson("Mads",null,null,null);
-        added2.get(0).setMomUuid(muuid);
+        //added2.get(0).setMomUuid(amp);
         personDAO.updatePerson(added2.get(0));
 
         //Add person to me
@@ -125,7 +125,7 @@ public class SchemaGeneratorDemo {
         ad1.setLastname("Johansen");
         String uuid = personDAO.createPerson(ad1);
         List<Person> person = personDAO.findPerson("Christian",null,"Johansen",null);
-        person.get(0).setDadUuid(uuid);
+        person.get(0).setDadUuid(ad1);
         personDAO.updatePerson(person.get(0));
 
         //Add person to me
@@ -134,7 +134,7 @@ public class SchemaGeneratorDemo {
         ad1.setLastname("Johansen");
         uuid = personDAO.createPerson(ad1);
         person = personDAO.findPerson("Christian",null,"Johansen",null);
-        person.get(0).setMomUuid(uuid);
+        person.get(0).setMomUuid(ad1);
         personDAO.updatePerson(person.get(0));
 
 
@@ -144,7 +144,7 @@ public class SchemaGeneratorDemo {
         ad1.setLastname("Larsen");
         uuid = personDAO.createPerson(ad1);
         person = personDAO.findPerson("Karen",null,"Johansen",null);
-        person.get(0).setDadUuid(uuid);
+        person.get(0).setDadUuid(ad1);
         personDAO.updatePerson(person.get(0));
 
         //Add person to me
@@ -153,7 +153,7 @@ public class SchemaGeneratorDemo {
         ad1.setLastname("Larsen");
         uuid = personDAO.createPerson(ad1);
         person = personDAO.findPerson("Karen",null,"Johansen",null);
-        person.get(0).setMomUuid(uuid);
+        person.get(0).setMomUuid(ad1);
         personDAO.updatePerson(person.get(0));
 
 
@@ -161,8 +161,8 @@ public class SchemaGeneratorDemo {
         ad1.setFirstname("Jeppe");
         ad1.setMiddlename("Skafte");
         ad1.setLastname("Johansen");
-        ad1.setMomUuid(muuid);
-        ad1.setDadUuid(duuid);
+        ad1.setMomUuid(amp);
+        ad1.setDadUuid(adp);
         uuid = personDAO.createPerson(ad1);
 
         User fu = new User();
