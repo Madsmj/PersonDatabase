@@ -1,5 +1,6 @@
-package com.anychart.dao;
+package com.anychart.models.dao;
 
+import com.anychart.models.Person;
 import com.anychart.models.User;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
@@ -47,7 +48,7 @@ public class UserDAO {
     }
 
     @Transactional
-    public String validateUser(String username, String password) {
+    public User validateUser(String username, String password) {
 
         sessionFactory.getCurrentSession().beginTransaction();
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(User.class);
@@ -55,7 +56,7 @@ public class UserDAO {
         List<User> list = criteria.list();
         sessionFactory.getCurrentSession().getTransaction().rollback();
         if(password.equals(list.get(0).getPassword())) {
-            return list.get(0).getUuid();
+            return list.get(0);
         }
         return null;
     }
@@ -81,6 +82,15 @@ public class UserDAO {
         sessionFactory.getCurrentSession().save(p);
         sessionFactory.getCurrentSession().getTransaction().commit();
         return p.getUuid();
+    }
+
+    @Transactional
+    public void updateUser(User u) {
+
+        Transaction tx = sessionFactory.getCurrentSession().beginTransaction();
+        sessionFactory.getCurrentSession().update(u);
+        tx.commit();
+
     }
 
 

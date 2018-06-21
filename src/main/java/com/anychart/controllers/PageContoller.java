@@ -1,6 +1,6 @@
 package com.anychart.controllers;
 
-import com.anychart.dao.PersonDAO;
+import com.anychart.models.dao.PersonDAO;
 import com.anychart.models.Person;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;

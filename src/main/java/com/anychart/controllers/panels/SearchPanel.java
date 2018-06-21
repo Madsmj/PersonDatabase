@@ -1,8 +1,12 @@
 package com.anychart.controllers.panels;
 
+import com.anychart.controllers.utils.AuthService;
 import com.anychart.controllers.window.PopupWindow;
-import com.anychart.dao.PersonDAO;
+import com.anychart.models.DataModel;
+import com.anychart.models.User;
+import com.anychart.models.dao.PersonDAO;
 import com.anychart.models.Person;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -37,6 +41,8 @@ public class SearchPanel extends VerticalLayout {
     private List<Person> people;
     private Grid<Person> grid = new Grid<>();
 
+    DataModel dm = new DataModel();
+
 
     public SearchPanel() {
         meButton.setWidth(100, Unit.PIXELS);
@@ -63,6 +69,7 @@ public class SearchPanel extends VerticalLayout {
             Person selected = event.getFirstSelectedItem().get();
             final PopupWindow dialog = new PopupWindow("Connect Person", false);
             PersonConnectPanel rp = new PersonConnectPanel();
+            rp.setSelectedPerson(selected.getFirstname()+" "+selected.getMiddlename()+" "+selected.getLastname());
 
             rp.addClickListener(new Button.ClickListener() {
                 @Override
@@ -71,6 +78,11 @@ public class SearchPanel extends VerticalLayout {
                     switch(clickEvent.getButton().getId()) {
 
                         case "ME":
+                            User user = (User) VaadinSession.getCurrent()
+                                    .getAttribute(AuthService.SESSION_USERUITEM);
+
+                            user.setPerson(selected);
+                            dm.updateUser(user);
 
                             break;
                         case "FATHER":

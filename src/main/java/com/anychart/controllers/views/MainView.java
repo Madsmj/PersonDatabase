@@ -1,7 +1,7 @@
 package com.anychart.controllers.views;
 
 import com.anychart.controllers.panels.PublicComponent;
-import com.anychart.dao.UserDAO;
+import com.anychart.models.dao.UserDAO;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.*;

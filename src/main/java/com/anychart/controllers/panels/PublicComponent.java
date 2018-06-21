@@ -3,7 +3,7 @@ package com.anychart.controllers.panels;
 import com.anychart.controllers.FamilymapUI;
 import com.anychart.controllers.utils.AuthService;
 import com.anychart.controllers.window.PopupWindow;
-import com.anychart.dao.UserDAO;
+import com.anychart.models.dao.UserDAO;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.ui.*;
 import org.hibernate.SessionFactory;

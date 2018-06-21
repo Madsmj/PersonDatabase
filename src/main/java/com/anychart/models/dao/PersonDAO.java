@@ -1,4 +1,4 @@
-package com.anychart.dao;
+package com.anychart.models.dao;
 
 import com.anychart.models.Person;
 import org.hibernate.Criteria;

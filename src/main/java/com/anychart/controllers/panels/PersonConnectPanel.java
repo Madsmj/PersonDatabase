@@ -36,6 +36,10 @@ public class PersonConnectPanel extends VerticalLayout {
         motherButton.addClickListener(listener);
     }
 
+    public void setSelectedPerson(String person) {
+        selectedPerson.setValue(person);
+    }
+
     @Override
     public void setEnabled(boolean enabled) {
 

@@ -2,7 +2,8 @@ package com.anychart.controllers.utils;
 
 
 
-import com.anychart.dao.UserDAO;
+import com.anychart.models.User;
+import com.anychart.models.dao.UserDAO;
 import com.vaadin.server.Page;
 import com.vaadin.server.VaadinService;
 import com.vaadin.server.VaadinSession;
@@ -19,6 +20,7 @@ public class AuthService {
     private static final String COOKIE_NAME = "remember-me";
     public static final String SESSION_USERNAME = "username";
     public static final String SESSION_USERUUID = "useruuid";
+    public static final String SESSION_USERUITEM = "useritem";
 
 
 
@@ -39,15 +41,18 @@ public class AuthService {
 
         UserDAO userDAO = new UserDAO();
         userDAO.setSessionFactory(sessionFactory);
-        String userUuid = userDAO.validateUser(username, password);
+        User user = userDAO.validateUser(username, password);
 
 
-        if (userUuid != null) {
+        if (user != null) {
             VaadinSession.getCurrent().setAttribute(
-                    SESSION_USERNAME, username);
+                    SESSION_USERNAME, user.getUsername());
 
             VaadinSession.getCurrent().setAttribute(
-                    SESSION_USERUUID, userUuid);
+                    SESSION_USERUUID, user.getUuid());
+
+            VaadinSession.getCurrent().setAttribute(
+                    SESSION_USERUITEM, user);
 
             if (rememberMe) {
                 rememberUser(username);

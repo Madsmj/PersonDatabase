@@ -1,12 +1,9 @@
 package com.anychart.controllers.panels;
 
 import com.anychart.controllers.utils.AuthService;
-import com.anychart.dao.UserDAO;
 import com.anychart.models.Person;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.*;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
 import java.util.Arrays;
 import java.util.List;

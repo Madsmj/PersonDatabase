@@ -1,6 +1,10 @@
 package com.anychart.models;
 
 
+import com.anychart.models.dao.PersonDAO;
+import com.anychart.models.dao.UserDAO;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,12 +21,24 @@ import java.util.Set;
 public class DataModel {
     protected Logger log = LoggerFactory.getLogger(getClass());
 
+    private SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+    private PersonDAO personDAO = new PersonDAO();
+    private UserDAO userDAO = new UserDAO();
+
     public DataModel() {
+
+        personDAO.setSessionFactory(sessionFactory);
+        userDAO.setSessionFactory(sessionFactory);
 
     }
 
     public void cleanModel() {
 
+    }
+
+
+    public void updateUser(User user) {
+        userDAO.updateUser(user);
     }
 
     /**

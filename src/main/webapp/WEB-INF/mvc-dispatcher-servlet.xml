@@ -53,7 +53,7 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <bean id="fruitDAO" class="com.anychart.dao.PersonDAO" depends-on="sessionFactory">
+    <bean id="fruitDAO" class="com.anychart.models.dao.PersonDAO" depends-on="sessionFactory">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 

@@ -1,11 +1,9 @@
 package com.anychart;
 
-import com.anychart.dao.PersonDAO;
-import com.anychart.dao.UserDAO;
+import com.anychart.models.dao.PersonDAO;
+import com.anychart.models.dao.UserDAO;
 import com.anychart.models.Person;
 import com.anychart.models.User;
-import com.fasterxml.classmate.AnnotationConfiguration;
-import com.fasterxml.classmate.AnnotationInclusion;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
@@ -14,12 +12,8 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 import org.hibernate.tool.schema.TargetType;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.io.File;
-import java.lang.annotation.Annotation;
 import java.util.EnumSet;
 import java.util.List;
 
