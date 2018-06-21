@@ -43,7 +43,7 @@ public class JettyRunner {
         //InputSource inputSource = new InputSource(new InputStreamReader(in, StandardCharsets.UTF_8));
 
         WebAppContext webapp = new WebAppContext();
-        webapp.setContextPath("/HibernateGenerateTables");
+        webapp.setContextPath("/MapMyFamily");
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
