@@ -33,7 +33,7 @@ public class MainView extends VerticalLayout implements View {
 
         loginButton.addClickListener(new Button.ClickListener() {
             public void buttonClick(Button.ClickEvent event) {
-                final LoginWindow dialog = new LoginWindow("Login to existing user");
+                final PopupWindow dialog = new PopupWindow("Login to existing user");
 
                 PublicComponent rp = new PublicComponent();
                 dialog.setDialogContent(rp);
@@ -70,7 +70,7 @@ public class MainView extends VerticalLayout implements View {
 
         createButton.addClickListener(new Button.ClickListener() {
             public void buttonClick(Button.ClickEvent event) {
-                final LoginWindow dialog = new LoginWindow("Create new user (only loginname)");
+                final PopupWindow dialog = new PopupWindow("Create new user (only loginname)");
 
                 PublicComponent rp = new PublicComponent();
                 dialog.setDialogContent(rp);

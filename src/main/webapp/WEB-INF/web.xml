@@ -4,7 +4,7 @@
 		  http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          version="2.5">
 
-    <display-name>DPA control</display-name>
+    <display-name>Heritage control</display-name>
 
     <context-param>
         <description>Deploy status</description>
@@ -13,7 +13,7 @@
     </context-param>
 
     <servlet>
-        <servlet-name>DPA Servlet</servlet-name>
+        <servlet-name>Heritage Servlet</servlet-name>
         <servlet-class>com.vaadin.server.VaadinServlet</servlet-class>
         <init-param>
             <description>Vaadin UI to display</description>
@@ -22,11 +22,11 @@
         </init-param>
     </servlet>
     <servlet-mapping>
-        <servlet-name>DPA Servlet</servlet-name>
+        <servlet-name>Heritage Servlet</servlet-name>
         <url-pattern>/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>DPA Servlet</servlet-name>
+        <servlet-name>Heritage Servlet</servlet-name>
         <url-pattern>/VAADIN/*</url-pattern>
     </servlet-mapping>
 

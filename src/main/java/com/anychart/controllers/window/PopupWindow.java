@@ -8,9 +8,9 @@ import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
 /**
- * Window for confirming that the performed checks should be stored in fedora
+ * Window for creating user
  */
-public class LoginWindow extends Window {
+public class PopupWindow extends Window {
 
     private final HorizontalLayout contentPanel = new HorizontalLayout();
     private final VerticalLayout vl = new VerticalLayout();
@@ -19,9 +19,8 @@ public class LoginWindow extends Window {
 
     private final Button ok = new Button("Ok");
     private final Button cancel = new Button("Cancel");
-    private final Label checkStateInfo = new Label("Validation can not be performed, since it is already performed");
 
-    public LoginWindow(String caption) {
+    public PopupWindow(String caption, boolean showOkCancel) {
         super(caption);
 
         contentPanel.setMargin(true);
@@ -31,10 +30,10 @@ public class LoginWindow extends Window {
 
         hl.addComponent(ok);
         hl.addComponent(cancel);
-        hl.addComponent(checkStateInfo);
         vl.addComponent(contentPanel);
-        vl.addComponent(hl);
-        checkStateInfo.setVisible(false);
+        if(showOkCancel) {
+            vl.addComponent(hl);
+        }
         super.setContent(vl);
     }
 
@@ -53,7 +52,6 @@ public class LoginWindow extends Window {
      */
     public void setReady(boolean ready) {
         ok.setEnabled(ready);
-        checkStateInfo.setVisible(!ready);
     }
 
     /**

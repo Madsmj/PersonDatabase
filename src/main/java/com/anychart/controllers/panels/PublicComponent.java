@@ -2,7 +2,7 @@ package com.anychart.controllers.panels;
 
 import com.anychart.controllers.FamilymapUI;
 import com.anychart.controllers.utils.AuthService;
-import com.anychart.controllers.window.LoginWindow;
+import com.anychart.controllers.window.PopupWindow;
 import com.anychart.dao.UserDAO;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.ui.*;
@@ -29,7 +29,7 @@ public class PublicComponent extends CustomComponent {
         Button buttonCreate = new Button("Create");
         buttonCreate.addClickListener(new Button.ClickListener() {
             public void buttonClick(Button.ClickEvent event) {
-                final LoginWindow dialog = new LoginWindow("Create new user (only loginname)");
+                final PopupWindow dialog = new PopupWindow("Create new user (only loginname)", true);
 
                 UserCreatePanel rp = new UserCreatePanel();
                 dialog.setDialogContent(rp);

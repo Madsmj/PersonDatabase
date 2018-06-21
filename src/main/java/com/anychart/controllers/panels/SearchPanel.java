@@ -1,16 +1,13 @@
 package com.anychart.controllers.panels;
 
-
+import com.anychart.controllers.window.PopupWindow;
 import com.anychart.dao.PersonDAO;
-import com.anychart.dao.UserDAO;
 import com.anychart.models.Person;
 import com.vaadin.ui.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -42,6 +39,10 @@ public class SearchPanel extends VerticalLayout {
 
 
     public SearchPanel() {
+        meButton.setWidth(100, Unit.PIXELS);
+        fatherButton.setWidth(100, Unit.PIXELS);
+        motherButton.setWidth(100, Unit.PIXELS);
+
 
         personDAO.setSessionFactory(sessionFactory);
 
@@ -54,18 +55,39 @@ public class SearchPanel extends VerticalLayout {
         });
 
 
-        // Have some data
-        /*List<Person> people = Arrays.asList(
-                new Person("Nicolaus Copernicus", "a","",""),
-                new Person("Galileo Galilei", "v","",""),
-                new Person("Johannes Kepler", "s","",""));*/
-
-// Create a grid bound to the list
-
 
         grid.addColumn(Person::getFirstname).setCaption("Firstname");
         grid.addColumn(Person::getMiddlename).setCaption("Middlename");
         grid.addColumn(Person::getLastname).setCaption("Lastname");
+        grid.addSelectionListener(event -> {
+            Person selected = event.getFirstSelectedItem().get();
+            final PopupWindow dialog = new PopupWindow("Connect Person", false);
+            PersonConnectPanel rp = new PersonConnectPanel();
+
+            rp.addClickListener(new Button.ClickListener() {
+                @Override
+                public void buttonClick(Button.ClickEvent clickEvent) {
+
+                    switch(clickEvent.getButton().getId()) {
+
+                        case "ME":
+
+                            break;
+                        case "FATHER":
+
+                            break;
+                        case "MOTHER":
+
+                            break;
+
+                    }
+                }
+            });
+
+            dialog.setDialogContent(rp);
+            dialog.setModal(true);
+            UI.getCurrent().addWindow(dialog);
+        });
 
         hz.addComponent(searchButton);
         hz.addComponent(firstname);
