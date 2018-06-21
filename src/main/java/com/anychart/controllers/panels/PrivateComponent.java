@@ -31,6 +31,15 @@ public class PrivateComponent extends CustomComponent {
         };
         header.addItem("search", searchCommand);
 
+        MenuBar.Command connectionDiagramCommand = new MenuBar.Command() {
+            @Override
+            public void menuSelected(MenuBar.MenuItem selectedItem) {
+                ConnectionPanel sp = new ConnectionPanel();
+                setCompositionRoot(new VerticalLayout(header, label, sp));
+            }
+        };
+        header.addItem("Connections", connectionDiagramCommand);
+
 
         MenuBar.Command signoutCommand = new MenuBar.Command() {
             @Override
