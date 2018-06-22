@@ -51,6 +51,12 @@ public class Person {
     @Column(name = "requestedBy")
     private String requestedBy;
 
+    @Column(name = "createdBy")
+    private String createdBy;
+
+    @Column(name = "security", columnDefinition = "int default 100")
+    private int security=100;//100-public, 200-semiprotect, 300-protect, 400-veryprotect, 500-private, 600-veryprivate
+
     @Column(name = "start")
     private Date start;
 

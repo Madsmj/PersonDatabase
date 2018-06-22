@@ -40,6 +40,14 @@ public class PrivateComponent extends CustomComponent {
         };
         header.addItem("Connections", connectionDiagramCommand);
 
+        MenuBar.Command treeDiagramCommand = new MenuBar.Command() {
+            @Override
+            public void menuSelected(MenuBar.MenuItem selectedItem) {
+                TreePanel sp = new TreePanel();
+                setCompositionRoot(new VerticalLayout(header, label, sp));
+            }
+        };
+        header.addItem("Tree", treeDiagramCommand);
 
         MenuBar.Command signoutCommand = new MenuBar.Command() {
             @Override
