@@ -3,34 +3,35 @@ package com.anychart.controllers.panels;
 import com.anychart.controllers.utils.AuthService;
 import com.anychart.controllers.utils.Converter;
 import com.anychart.models.Person;
-import com.anychart.models.dao.PersonDAO;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.*;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
 /**
  * Panel for handling searching of values for checkings
  */
 public class ConnectionPanel extends GridLayout {
 
-    private TextArea me = new TextArea();
-    private TextArea father = new TextArea();
-    private TextArea mother = new TextArea();
+    private PersonPanel me = new PersonPanel();
+    private PersonPanel father = new PersonPanel();
+    private PersonPanel mother = new PersonPanel();
 
     public ConnectionPanel() {
         super(3,2);
         Person person = (Person)VaadinSession.getCurrent().getAttribute(AuthService.SESSION_PERSONITEM);
         me.setValue(Converter.getPersonDescription(person));
 
-        father.setEnabled(person.getMomUuid() != null);
-        if(person.getMomUuid()!=null) {
-            father.setValue(Converter.getPersonDescription(person.getMomUuid()));
+        father.setEnabled(person.getDadUuid() != null);
+        if(person.getDadUuid()!=null) {
+            //father.setValue("Father:\n" + Converter.getPersonDescription(person.getDadUuid()));
+            //father.setUuid(person.getDadUuid().getUuid());
+            father.setPersonPanel(person.getDadUuid());
         }
 
-        father.setEnabled(person.getMomUuid() != null);
-        if(person.getDadUuid()!=null) {
-            mother.setValue(Converter.getPersonDescription(person.getDadUuid()));
+        mother.setEnabled(person.getMomUuid() != null);
+        if(person.getMomUuid()!=null) {
+            //mother.setValue("Mother:\n" + Converter.getPersonDescription(person.getMomUuid()));
+            //mother.setUuid(person.getMomUuid().getUuid());
+            mother.setPersonPanel(person.getMomUuid());
         }
 
         this.addComponent(me,1,1);

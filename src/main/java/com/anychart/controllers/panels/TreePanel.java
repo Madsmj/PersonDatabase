@@ -31,7 +31,8 @@ public class TreePanel extends GridLayout {
             mother.setValue(Converter.getPersonDescription(person.getDadUuid()));
         }
 
-        this.addComponent(new TextField(),1,15);
+        this.addComponent(me,1,15);
+
         this.addComponent(new TextField(),2,7);
         this.addComponent(new TextField(),2,23);
 
@@ -66,6 +67,8 @@ public class TreePanel extends GridLayout {
         this.addComponent(new TextField(),5,28);
         this.addComponent(new TextField(),5,30);
     }
+
+
 
 
     /**

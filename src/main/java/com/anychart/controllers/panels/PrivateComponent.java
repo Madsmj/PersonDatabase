@@ -10,9 +10,12 @@ import java.util.List;
 
 public class PrivateComponent extends CustomComponent {
 
+    String uuid;
 
 
-    public PrivateComponent() {
+    public PrivateComponent(String uuid) {
+
+        this.uuid = uuid;
 
         MenuBar header = new MenuBar();
         header.setWidth("100%");
@@ -58,15 +61,11 @@ public class PrivateComponent extends CustomComponent {
         header.addItem("signout", signoutCommand);
 
 
-
-
-
-
         // Have some data
         List<Person> people = Arrays.asList(
-                new Person("Nicolaus Copernicus", "","",""),
-                new Person("Galileo Galilei", "","",""),
-                new Person("Johannes Kepler", "","",""));
+                new Person("", "","",""),
+                new Person("", "","",""),
+                new Person("", "","",""));
 
 // Create a grid bound to the list
         Grid<Person> grid = new Grid<>();

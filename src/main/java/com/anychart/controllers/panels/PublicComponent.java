@@ -81,7 +81,7 @@ public class PublicComponent extends CustomComponent {
     private void onLogin(String username, String password, boolean rememberMe) {
         if (AuthService.login(username, password, rememberMe)) {
             FamilymapUI ui = (FamilymapUI) UI.getCurrent();
-            ui.showPrivateComponent();
+            ui.showPrivateComponent(null);
         } else {
             Notification.show("Invalid credentials", Notification.Type.ERROR_MESSAGE);
         }

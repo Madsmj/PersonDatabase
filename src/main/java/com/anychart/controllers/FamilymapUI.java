@@ -36,44 +36,19 @@ public class FamilymapUI extends UI {
      */
     @Override
     protected void init(VaadinRequest request) {
-
-
         if (!AuthService.isAuthenticated()) {
             showPublicComponent();
         } else {
-            showPrivateComponent();
+            String uuid = request.getParameter("uuid");
+            showPrivateComponent(uuid);
         }
-
-
-        /*if (request.getUserPrincipal() != null) {
-            String initials = request.getUserPrincipal().getName();
-            //model.setInitials(initials);
-        }
-
-        //These parameters can be used to construct a link to information without performing the search in the UI
-        String month = request.getParameter("month");
-        String del = request.getParameter("del");
-        String title = request.getParameter("title");
-        boolean validated = "true".equals(request.getParameter("validated")); //This parameter is a backdoor to view information that is normally hidden from the user
-
-
-
-        address = request.getRemoteAddr();
-        getPage().setTitle("Heritage");
-
-        // Create a navigator to control the views
-        navigator = new Navigator(this, this);
-        navigator.addView(MAINVIEW, new MainView());
-        navigator.addView(OVERVIEW, new StatisticsView(null, OVERVIEW));*/
-
-
     }
 
     public void showPublicComponent() {
         setContent(new PublicComponent());
     }
 
-    public void showPrivateComponent() {
-        setContent(new PrivateComponent());
+    public void showPrivateComponent(String uuid) {
+        setContent(new PrivateComponent(uuid));
     }
 }
