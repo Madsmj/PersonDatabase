@@ -9,16 +9,33 @@ import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 
+import java.util.ArrayList;
+
 
 public class TreePanel extends GridLayout {
 
-    private TextField me = new TextField();
-    private TextArea father = new TextArea();
-    private TextArea mother = new TextArea();
+
+
+
+
+
 
     public TreePanel() {
         super(6,31);
+
+
+        FieldMap yy = new FieldMap(6);
+
         Person person = (Person) VaadinSession.getCurrent().getAttribute(AuthService.SESSION_PERSONITEM);
+
+        TextField me = new TextField();
+        TextField father = new TextField();
+        TextField mother = new TextField();
+
+
+
+
+
         me.setValue(Converter.getPersonDescription(person));
 
         father.setEnabled(person.getMomUuid() != null);
@@ -33,8 +50,8 @@ public class TreePanel extends GridLayout {
 
         this.addComponent(me,1,15);
 
-        this.addComponent(new TextField(),2,7);
-        this.addComponent(new TextField(),2,23);
+        this.addComponent(father,2,7);
+        this.addComponent(mother,2,23);
 
         this.addComponent(new TextField(),3,3);
         this.addComponent(new TextField(),3,11);
@@ -78,4 +95,37 @@ public class TreePanel extends GridLayout {
     public void addClickListener(Button.ClickListener listener) {
 
     }
+
+
+
+    public class FieldMap {
+
+        private ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>();
+
+
+        public FieldMap(int levels) {
+            int count = 1;
+            for(int i=1;i<levels;i++) {
+
+
+                ArrayList<String> ll = new ArrayList<String>();
+                for(int j=0;j<count;j++) {
+                    ll.add("t");
+                }
+
+                list.add(ll);
+                count = count * 2;
+            }
+
+            System.out.println(list);
+
+        }
+
+
+
+
+    }
+
+
+
 }
