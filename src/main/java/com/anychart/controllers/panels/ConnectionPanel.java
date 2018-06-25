@@ -20,14 +20,12 @@ public class ConnectionPanel extends GridLayout {
         Person person = (Person)VaadinSession.getCurrent().getAttribute(AuthService.SESSION_PERSONITEM);
         me.setValue(Converter.getPersonDescription(person));
 
-        father.setEnabled(person.getDadUuid() != null);
         if(person.getDadUuid()!=null) {
             //father.setValue("Father:\n" + Converter.getPersonDescription(person.getDadUuid()));
             //father.setUuid(person.getDadUuid().getUuid());
             father.setPersonPanel(person.getDadUuid());
         }
 
-        mother.setEnabled(person.getMomUuid() != null);
         if(person.getMomUuid()!=null) {
             //mother.setValue("Mother:\n" + Converter.getPersonDescription(person.getMomUuid()));
             //mother.setUuid(person.getMomUuid().getUuid());

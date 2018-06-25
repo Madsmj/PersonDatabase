@@ -35,9 +35,6 @@ public class PublicComponent extends CustomComponent {
                 dialog.setDialogContent(rp);
                 dialog.setModal(true);
 
-
-
-
                 UI.getCurrent().addWindow(dialog);
                 dialog.setListener(new Button.ClickListener() {
                     @Override

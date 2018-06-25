@@ -52,6 +52,17 @@ public class PrivateComponent extends CustomComponent {
         };
         header.addItem("Tree", treeDiagramCommand);
 
+        MenuBar.Command personCreateCommand = new MenuBar.Command() {
+            @Override
+            public void menuSelected(MenuBar.MenuItem selectedItem) {
+                PersonCreatePagePanel sp = new PersonCreatePagePanel();
+                setCompositionRoot(new VerticalLayout(header, label, sp));
+            }
+        };
+        header.addItem("create person", personCreateCommand);
+
+
+
         MenuBar.Command signoutCommand = new MenuBar.Command() {
             @Override
             public void menuSelected(MenuBar.MenuItem selectedItem) {

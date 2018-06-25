@@ -81,11 +81,14 @@ public class SearchPanel extends VerticalLayout {
                         case "FATHER":
                             person = (Person)VaadinSession.getCurrent().getAttribute(AuthService.SESSION_PERSONITEM);
                             person.setDadUuid(listSelectedPerson);
+                            dm.updatePerson(person);
+                            UI.getCurrent().removeWindow(dialog);
                             break;
                         case "MOTHER":
                             person = (Person)VaadinSession.getCurrent().getAttribute(AuthService.SESSION_PERSONITEM);
                             person.setMomUuid(listSelectedPerson);
                             dm.updatePerson(person);
+                            UI.getCurrent().removeWindow(dialog);
                             break;
 
                     }
